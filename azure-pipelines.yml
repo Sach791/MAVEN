@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  name: Default
+  name: Self Hosted
 
 steps:
 - script: echo Hello, world!
