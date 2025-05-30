@@ -1,41 +1,18 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+trigger:
+- master
 
-# Starter pipeline
+pool:
+  name: Self Hosted
 
-          # Start with a minimal pipeline that you can customize to build and deploy your code.
+steps:
+- script: echo Myfirst Azure Pipeline for maven project
+  displayName: 'Run a one-line script'
 
-          # Add steps that build, run tests, deploy, and more:
+- script: mvn clean install
+  displayName: 'Build with maven'
 
-          # https://aka.ms/yaml
+- script: ls -l target/
+  displayName: 'List target directory'
 
- 
-
-          trigger:
-
-          - master
-
- 
-
-          pool:
-
-            name: Self Hosted
-
- 
-
-          steps:
-
-          - script: echo Myfirst Azure Pipeline for maven project
-
-            displayName: 'Run a one-line script'
-
-          - script: mvn clean install
-
-            displayName: 'Build with maven'
-
-          - script: java -jar target/MAVEN-1.0-SNAPSHOT.jar
-
-
-            displayName: 'Running jar'
+- script: java -jar target/MAVEN-1.0-SNAPSHOT.jar
+  displayName: 'Run JAR'
